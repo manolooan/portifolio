@@ -87,11 +87,13 @@ h1 {
   font-size: clamp(2.4rem, 4vw, 3.6rem);
   line-height: 1.2;
   margin-bottom: 20px;
+  animation: fadeUp 0.8s ease forwards;
 }
 
 .subtitle {
   color: var(--muted);
   margin-bottom: 32px;
+  animation: fadeUp 0.8s ease 0.1s forwards;
 }
 
 .hero-actions {
@@ -148,6 +150,7 @@ h1 {
   border-radius: 32px;
   box-shadow: var(--shadow);
   overflow: hidden;
+  animation: float 6s ease-in-out infinite;
 }
 
 .hero-image {
@@ -213,6 +216,54 @@ h1 {
   gap: 24px;
 }
 
+.carousel-group {
+  margin-bottom: 40px;
+  display: grid;
+  gap: 16px;
+}
+
+.carousel-header h3 {
+  font-size: 1.25rem;
+}
+
+.carousel-header p {
+  color: var(--muted);
+}
+
+.carousel {
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: rgba(17, 11, 31, 0.6);
+}
+
+.carousel-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(160px, 1fr);
+  gap: 16px;
+  padding: 16px;
+  animation: scroll 18s linear infinite;
+}
+
+.carousel:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+.carousel-item {
+  height: 140px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: linear-gradient(135deg, rgba(164, 107, 255, 0.18), rgba(25, 19, 37, 0.9));
+  border: 1px dashed rgba(164, 107, 255, 0.4);
+}
+
 .portfolio-card {
   background: var(--surface);
   border-radius: 24px;
@@ -267,6 +318,24 @@ h1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 24px;
+}
+
+.availability .service-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.availability .service-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(164, 107, 255, 0.18), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.availability .service-card:hover::after {
+  opacity: 1;
 }
 
 .service-card {
@@ -338,6 +407,29 @@ h1 {
   border: 1px solid rgba(164, 107, 255, 0.35);
 }
 
+.payments {
+  margin-top: 24px;
+}
+
+.payments h3 {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.payment-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.payment-tags span {
+  background: rgba(164, 107, 255, 0.18);
+  border: 1px solid rgba(164, 107, 255, 0.4);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
 .contact-actions {
   display: flex;
   flex-wrap: wrap;
@@ -348,6 +440,49 @@ h1 {
 .contact-actions .btn {
   flex: 1 1 160px;
   text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(164, 107, 255, 0.25);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-40%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 .footer {
