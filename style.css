@@ -1,348 +1,206 @@
-:root {
-  --moss: #2f4f3e;
-  --moss-light: #9fbeaa;
-  --cream: #f5efe3;
-  --gold: #c4a96d;
-  --text: #22372b;
-  --card: rgba(255, 255, 255, 0.72);
-  --shadow: 0 16px 40px rgba(47, 79, 62, 0.16);
-  --radius: 20px;
+const openLetterBtn = document.getElementById("openLetterBtn");
+const letterCard = document.getElementById("letterCard");
+const typingText = document.getElementById("typingText");
+const toggleMusicBtn = document.getElementById("toggleMusicBtn");
+const bgMusic = document.getElementById("bgMusic");
+
+const daysEl = document.getElementById("days");
+const hoursEl = document.getElementById("hours");
+const minutesEl = document.getElementById("minutes");
+const secondsEl = document.getElementById("seconds");
+
+const scoreEl = document.getElementById("score");
+const spawnHeartBtn = document.getElementById("spawnHeartBtn");
+const gameArea = document.getElementById("gameArea");
+const unlockMessage = document.getElementById("unlockMessage");
+
+const slides = Array.from(document.querySelectorAll(".slide"));
+const prevSlide = document.getElementById("prevSlide");
+const nextSlide = document.getElementById("nextSlide");
+const currentYear = document.getElementById("currentYear");
+
+let typingIndex = 0;
+let typingTimer;
+let isMusicPlaying = false;
+let score = 0;
+let gameInterval;
+let currentSlideIndex = 0;
+
+function typeLetterMessage() {
+  const message = typingText.dataset.message || "";
+  typingText.textContent = "";
+  clearInterval(typingTimer);
+  typingIndex = 0;
+
+  typingTimer = setInterval(() => {
+    typingText.textContent += message.charAt(typingIndex);
+    typingIndex += 1;
+
+    if (typingIndex >= message.length) {
+      clearInterval(typingTimer);
+    }
+  }, 28);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+openLetterBtn.addEventListener("click", () => {
+  letterCard.classList.remove("hidden");
+  letterCard.animate(
+    [
+      { opacity: 0, transform: "translateY(16px)" },
+      { opacity: 1, transform: "translateY(0)" }
+    ],
+    { duration: 520, easing: "ease-out" }
+  );
 
-body {
-  font-family: "Inter", sans-serif;
-  color: var(--text);
-  background: linear-gradient(-45deg, #ecf3ee, #f5efe3, #e6f0e9, #f7f2e9);
-  background-size: 350% 350%;
-  animation: gradientFlow 15s ease infinite;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+  typeLetterMessage();
+  document.getElementById("carta").scrollIntoView({ behavior: "smooth", block: "center" });
+});
 
-h1,
-h2 {
-  font-family: "Playfair Display", serif;
-  line-height: 1.2;
-}
-
-main,
-header,
-footer {
-  width: min(980px, 92%);
-  margin: 0 auto;
-}
-
-section,
-.hero,
-footer {
-  margin-top: 1.2rem;
-  margin-bottom: 1.2rem;
-}
-
-.hero,
-section,
-footer {
-  background: var(--card);
-  border: 1px solid rgba(196, 169, 109, 0.25);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(8px);
-  padding: 1.2rem;
-}
-
-.hero {
-  text-align: center;
-  padding-top: 2.6rem;
-  padding-bottom: 2.6rem;
-}
-
-.hero-tag {
-  color: var(--gold);
-  font-weight: 600;
-  margin-bottom: 0.8rem;
-}
-
-h1 {
-  color: var(--moss);
-  font-size: clamp(2rem, 8vw, 3rem);
-}
-
-.hero-subtitle {
-  margin: 1rem auto 1.5rem;
-  max-width: 600px;
-  color: #355645;
-}
-
-.btn {
-  border: 0;
-  border-radius: 999px;
-  padding: 0.85rem 1.35rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
-  font-size: 0.95rem;
-}
-
-.btn:active {
-  transform: scale(0.97);
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn.primary {
-  background: var(--moss);
-  color: #fff;
-  box-shadow: 0 8px 18px rgba(47, 79, 62, 0.28);
-}
-
-.btn.secondary {
-  background: #fff;
-  color: var(--moss);
-  border: 1px solid rgba(47, 79, 62, 0.2);
-}
-
-.letter-card {
-  border: 1px dashed rgba(47, 79, 62, 0.35);
-  border-radius: calc(var(--radius) - 6px);
-  padding: 1rem;
-  transition: all 0.5s ease;
-  background: rgba(255, 255, 255, 0.75);
-}
-
-.letter-card h2,
-.countdown-section h2,
-.game-section h2,
-.gallery-section h2 {
-  color: var(--moss);
-  margin-bottom: 0.7rem;
-  font-size: clamp(1.5rem, 5vw, 2rem);
-}
-
-#typingText {
-  min-height: 100px;
-  font-size: 1rem;
-  line-height: 1.65;
-}
-
-.letter-actions {
-  margin-top: 1rem;
-}
-
-.countdown-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.7rem;
-  margin-top: 1rem;
-}
-
-.count-card {
-  background: linear-gradient(170deg, #ffffff 15%, #eaf2ec);
-  border-radius: 14px;
-  text-align: center;
-  padding: 0.8rem;
-  border: 1px solid rgba(47, 79, 62, 0.14);
-}
-
-.count-card span {
-  display: block;
-  font-size: 1.7rem;
-  font-weight: 700;
-  color: var(--moss);
-}
-
-.count-card small {
-  color: #466d57;
-}
-
-.game-topbar {
-  margin-top: 0.9rem;
-  display: flex;
-  justify-content: space-between;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.game-area {
-  margin-top: 1rem;
-  position: relative;
-  width: 100%;
-  height: 280px;
-  border-radius: 16px;
-  background: linear-gradient(180deg, #f8f3eb, #e9f2ec);
-  border: 1px solid rgba(47, 79, 62, 0.18);
-  overflow: hidden;
-}
-
-.heart {
-  position: absolute;
-  font-size: 1.7rem;
-  cursor: pointer;
-  user-select: none;
-  animation: floatUp 1.9s linear forwards;
-  filter: drop-shadow(0 4px 6px rgba(47, 79, 62, 0.25));
-}
-
-.unlock-message {
-  margin-top: 0.8rem;
-  font-weight: 700;
-  color: #7b1656;
-}
-
-.carousel {
-  margin-top: 1rem;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.carousel-track {
-  overflow: hidden;
-  border-radius: 16px;
-}
-
-.slide {
-  display: none;
-  background: #fff;
-  border: 1px solid rgba(196, 169, 109, 0.3);
-  border-radius: 16px;
-  overflow: hidden;
-  animation: fadeIn 0.4s ease;
-}
-
-.slide.active {
-  display: block;
-}
-
-.slide img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-.slide figcaption {
-  padding: 0.8rem;
-  color: #3b5f4d;
-}
-
-.carousel-btn {
-  background: #ffffff;
-  color: var(--moss);
-  border: 1px solid rgba(47, 79, 62, 0.25);
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  cursor: pointer;
-}
-
-footer {
-  text-align: center;
-  color: #446851;
-}
-
-.footer-year {
-  margin-top: 0.35rem;
-}
-
-.hidden {
-  display: none;
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.decor {
-  position: fixed;
-  z-index: -1;
-  opacity: 0.16;
-  font-size: 3rem;
-  animation: pulse 4s ease-in-out infinite;
-}
-
-.decor-top {
-  top: 5%;
-  left: 5%;
-}
-
-.decor-bottom {
-  bottom: 7%;
-  right: 5%;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+toggleMusicBtn.addEventListener("click", async () => {
+  if (!isMusicPlaying) {
+    try {
+      await bgMusic.play();
+      isMusicPlaying = true;
+      toggleMusicBtn.textContent = "Pausar música ⏸️";
+    } catch (error) {
+      toggleMusicBtn.textContent = "Toque para permitir música 🎵";
+    }
+  } else {
+    bgMusic.pause();
+    isMusicPlaying = false;
+    toggleMusicBtn.textContent = "Tocar música 🎵";
   }
-  to {
-    opacity: 1;
+});
+
+function updateCountdown() {
+  const targetDate = new Date("2027-02-26T00:00:00");
+  const now = new Date();
+  const diff = targetDate - now;
+
+  if (diff <= 0) {
+    daysEl.textContent = "00";
+    hoursEl.textContent = "00";
+    minutesEl.textContent = "00";
+    secondsEl.textContent = "00";
+    return;
+  }
+
+  const day = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hour = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minute = Math.floor((diff / (1000 * 60)) % 60);
+  const second = Math.floor((diff / 1000) % 60);
+
+  daysEl.textContent = String(day).padStart(2, "0");
+  hoursEl.textContent = String(hour).padStart(2, "0");
+  minutesEl.textContent = String(minute).padStart(2, "0");
+  secondsEl.textContent = String(second).padStart(2, "0");
+}
+
+function createHeart() {
+  const heart = document.createElement("span");
+  heart.className = "heart";
+  heart.textContent = "💚";
+
+  const x = Math.random() * (gameArea.clientWidth - 32);
+  const y = Math.random() * (gameArea.clientHeight - 32);
+
+  heart.style.left = `${x}px`;
+  heart.style.top = `${y}px`;
+
+  heart.addEventListener("click", () => {
+    score += 1;
+    scoreEl.textContent = String(score);
+    heart.remove();
+
+    if (score >= 10) {
+      unlockMessage.classList.remove("hidden");
+      burstHearts();
+      clearInterval(gameInterval);
+      spawnHeartBtn.textContent = "Jogar de novo";
+    }
+  });
+
+  gameArea.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 1700);
+}
+
+function burstHearts() {
+  for (let i = 0; i < 14; i += 1) {
+    const burst = document.createElement("span");
+    burst.className = "heart";
+    burst.textContent = i % 2 === 0 ? "💚" : "💖";
+    burst.style.left = `${Math.random() * (gameArea.clientWidth - 32)}px`;
+    burst.style.top = `${Math.random() * (gameArea.clientHeight - 32)}px`;
+    gameArea.appendChild(burst);
+
+    setTimeout(() => burst.remove(), 1400);
   }
 }
 
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+spawnHeartBtn.addEventListener("click", () => {
+  score = 0;
+  scoreEl.textContent = "0";
+  unlockMessage.classList.add("hidden");
+  clearInterval(gameInterval);
+  gameArea.innerHTML = "";
+
+  createHeart();
+  gameInterval = setInterval(createHeart, 820);
+  spawnHeartBtn.textContent = "Em andamento...";
+});
+
+function showSlide(index) {
+  slides.forEach((slide, slideIndex) => {
+    slide.classList.toggle("active", slideIndex === index);
+  });
 }
 
-@keyframes floatUp {
-  0% {
-    transform: translateY(18px) scale(0.9);
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-150px) scale(1.05);
-    opacity: 0;
-  }
-}
+nextSlide.addEventListener("click", () => {
+  currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+  showSlide(currentSlideIndex);
+});
 
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.08);
-  }
-}
+prevSlide.addEventListener("click", () => {
+  currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+  showSlide(currentSlideIndex);
+});
 
-@media (min-width: 760px) {
-  .hero,
-  section,
-  footer {
-    padding: 1.8rem;
-  }
+let touchStartX = 0;
+let touchEndX = 0;
 
-  .countdown-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+const carousel = document.getElementById("carousel");
+carousel.addEventListener("touchstart", (event) => {
+  touchStartX = event.changedTouches[0].screenX;
+});
 
-  .slide img {
-    height: 330px;
+carousel.addEventListener("touchend", (event) => {
+  touchEndX = event.changedTouches[0].screenX;
+  const distance = touchEndX - touchStartX;
+
+  if (distance < -40) {
+    nextSlide.click();
+  } else if (distance > 40) {
+    prevSlide.click();
   }
-}
+});
+
+const revealElements = document.querySelectorAll(".reveal");
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  },
+  { threshold: 0.15 }
+);
+
+revealElements.forEach((element) => observer.observe(element));
+
+currentYear.textContent = String(new Date().getFullYear());
+updateCountdown();
+setInterval(updateCountdown, 1000);
