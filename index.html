@@ -1,101 +1,326 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Feliz aniversário, meu amor 💚</title>
-    <meta
-      name="description"
-      content="Um site romântico e interativo de feliz aniversário, criado com muito amor."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="decor decor-top">💚</div>
-    <div class="decor decor-bottom">🍃</div>
-
-    <header class="hero reveal">
-      <p class="hero-tag">Para a pessoa mais especial da minha vida</p>
-      <h1>Feliz aniversário, meu amor 💚</h1>
-      <p class="hero-subtitle">
-        Hoje o mundo fica ainda mais bonito porque celebra o seu sorriso, sua luz e
-        o amor que eu tenho por você.
-      </p>
-      <button class="btn primary" id="openLetterBtn">Abrir surpresa 🎁</button>
-    </header>
-
-    <main>
-      <section class="letter-section reveal" id="carta">
-        <div class="letter-card hidden" id="letterCard">
-          <h2>Uma cartinha para você ✨</h2>
-          <p id="typingText" data-message="Meu amor, feliz aniversário! Que seu dia seja leve, lindo e cheio de carinho. Obrigado por existir e por transformar meus dias com sua presença. Que nunca te faltem sonhos, risadas e motivos para se sentir amada. Eu te amo mais a cada dia. 💚"></p>
-          <div class="letter-actions">
-            <button class="btn secondary" id="toggleMusicBtn">Tocar música 🎵</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="countdown-section reveal" aria-label="Contagem para o próximo aniversário">
-        <h2>Contagem para o próximo aniversário 🎂</h2>
-        <div class="countdown-grid" id="countdown">
-          <article class="count-card"><span id="days">00</span><small>Dias</small></article>
-          <article class="count-card"><span id="hours">00</span><small>Horas</small></article>
-          <article class="count-card"><span id="minutes">00</span><small>Minutos</small></article>
-          <article class="count-card"><span id="seconds">00</span><small>Segundos</small></article>
-        </div>
-      </section>
-
-      <section class="game-section reveal">
-        <h2>Mini joguinho fofo 💚</h2>
-        <p>Clique nos corações para ganhar pontos e desbloquear uma surpresa!</p>
-        <div class="game-topbar">
-          <p>Pontos: <strong id="score">0</strong></p>
-          <button class="btn secondary" id="spawnHeartBtn">Começar jogo</button>
-        </div>
-        <div class="game-area" id="gameArea" aria-label="Área do jogo"></div>
-        <p class="unlock-message hidden" id="unlockMessage">
-          Você desbloqueou um beijo infinito 💋
-        </p>
-      </section>
-
-      <section class="gallery-section reveal">
-        <h2>Nossas memórias 📸</h2>
-        <div class="carousel" id="carousel">
-          <button class="carousel-btn" id="prevSlide" aria-label="Foto anterior">❮</button>
-          <div class="carousel-track" id="carouselTrack">
-            <figure class="slide active">
-              <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1200&q=80" alt="Casal sorrindo ao pôr do sol" />
-              <figcaption>Seu sorriso é meu lugar favorito.</figcaption>
-            </figure>
-            <figure class="slide">
-              <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?auto=format&fit=crop&w=1200&q=80" alt="Mãos dadas com flores" />
-              <figcaption>Todo caminho fica lindo ao seu lado.</figcaption>
-            </figure>
-            <figure class="slide">
-              <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1200&q=80" alt="Piquenique romântico com luz suave" />
-              <figcaption>Você é meu abraço em forma de paz.</figcaption>
-            </figure>
-          </div>
-          <button class="carousel-btn" id="nextSlide" aria-label="Próxima foto">❯</button>
-        </div>
-      </section>
-    </main>
-
-    <footer class="reveal">
-      <p>Feito com amor por <span id="authorName">Seu Nome</span> ✨</p>
-      <p class="footer-year">© <span id="currentYear"></span></p>
-    </footer>
-
-    <audio id="bgMusic" loop>
-      <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6cc5f0f17a.mp3?filename=romantic-love-11763.mp3" type="audio/mpeg" />
-    </audio>
-
-    <script src="script.js"></script>
-  </body>
-</html>
+diff --git a/index.html b/index.html
+index 66681875e20c65fed47c787cec56d189ab6a1a89..273ef755ef6907cd795d5e47c156b9850c92133f 100644
+--- a/index.html
++++ b/index.html
+@@ -1,220 +1,101 @@
+-<!DOCTYPE html>
+-<html lang="pt-BR">
+-  <head>
+-    <meta charset="UTF-8" />
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>Portfólio | Ilustrações e Design</title>
+-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+-    <link
+-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
+-      rel="stylesheet"
+-    />
+-    <link rel="stylesheet" href="style.css" />
+-  </head>
+-  <body>
+-    <header class="hero">
+-      <nav class="nav">
+-        <div class="logo">Looan</div>
+-        <div class="nav-links">
+-          <a href="#trabalhos">Trabalhos</a>
+-          <a href="#servicos">Serviços</a>
+-          <a href="#sobre">Sobre</a>
+-          <a href="#contato">Contato</a>
+-        </div>
+-        <a class="nav-cta" href="#contato">Vamos conversar</a>
+-      </nav>
+-
+-      <div class="hero-content">
+-        <div>
+-          <p class="eyebrow">Ilustrações • Perfis • Banners • Thumbnails</p>
+-          <h1>
+-            Portfólio criativo com foco em ilustrações modernas, identidades visuais
+-            e artes que comunicam.
+-          </h1>
+-          <p class="subtitle">
+-            Transformo ideias em imagens marcantes para redes sociais, projetos
+-            pessoais e marcas que querem se destacar com uma estética limpa e
+-            contemporânea.
+-          </p>
+-          <div class="hero-actions">
+-            <a class="btn primary" href="#trabalhos">Ver trabalhos</a>
+-            <a class="btn ghost" href="#contato">Solicitar orçamento</a>
+-          </div>
+-          <div class="hero-metrics">
+-            <div>
+-              <strong>120+</strong>
+-              <span>Projetos entregues</span>
+-            </div>
+-            <div>
+-              <strong>48h</strong>
+-              <span>Prazo médio</span>
+-            </div>
+-            <div>
+-              <strong>100%</strong>
+-              <span>Foco em detalhes</span>
+-            </div>
+-          </div>
+-        </div>
+-        <div class="hero-card">
+-          <div class="hero-image"></div>
+-          <div class="hero-card-content">
+-            <h3>Pacote Destaque</h3>
+-            <p>
+-              Combinação de ilustrações personalizadas, banners e thumbnails com
+-              identidade coesa para seu lançamento.
+-            </p>
+-            <div class="hero-tags">
+-              <span>#ilustração</span>
+-              <span>#branding</span>
+-              <span>#social</span>
+-            </div>
+-          </div>
+-        </div>
+-      </div>
+-    </header>
+-
+-    <main>
+-      <section id="trabalhos" class="section">
+-        <div class="section-header">
+-          <h2>Trabalhos recentes</h2>
+-          <p>
+-            Seleção de projetos que misturam traços autorais, paletas suaves e
+-            composição pensada para performance digital.
+-          </p>
+-        </div>
+-        <div class="portfolio-grid">
+-          <article class="portfolio-card">
+-            <div class="portfolio-thumb thumb-1"></div>
+-            <div class="portfolio-info">
+-              <h3>Ilustração editorial</h3>
+-              <p>Composição narrativa para blog de cultura pop.</p>
+-              <span>Ilustração</span>
+-            </div>
+-          </article>
+-          <article class="portfolio-card">
+-            <div class="portfolio-thumb thumb-2"></div>
+-            <div class="portfolio-info">
+-              <h3>Foto de perfil</h3>
+-              <p>Retrato estilizado para criadores de conteúdo.</p>
+-              <span>Avatar</span>
+-            </div>
+-          </article>
+-          <article class="portfolio-card">
+-            <div class="portfolio-thumb thumb-3"></div>
+-            <div class="portfolio-info">
+-              <h3>Banners promocionais</h3>
+-              <p>Sequência de banners para campanha de lançamento.</p>
+-              <span>Banner</span>
+-            </div>
+-          </article>
+-          <article class="portfolio-card">
+-            <div class="portfolio-thumb thumb-4"></div>
+-            <div class="portfolio-info">
+-              <h3>Thumbnail para vídeo</h3>
+-              <p>Thumbnail com alto contraste e foco no storytelling.</p>
+-              <span>Thumbnail</span>
+-            </div>
+-          </article>
+-        </div>
+-      </section>
+-
+-      <section id="servicos" class="section alt">
+-        <div class="section-header">
+-          <h2>Serviços</h2>
+-          <p>
+-            Cada entrega é planejada para destacar seu conteúdo e manter uma
+-            identidade visual coerente.
+-          </p>
+-        </div>
+-        <div class="services">
+-          <div class="service-card">
+-            <h3>Ilustrações personalizadas</h3>
+-            <p>Artes exclusivas para posts, editoriais ou coleções digitais.</p>
+-          </div>
+-          <div class="service-card">
+-            <h3>Perfis & Avatares</h3>
+-            <p>Retratos estilizados com foco em personalidade e reconhecimento.</p>
+-          </div>
+-          <div class="service-card">
+-            <h3>Banners e capas</h3>
+-            <p>Layouts pensados para campanhas, canais e páginas de venda.</p>
+-          </div>
+-          <div class="service-card">
+-            <h3>Thumbnails estratégicas</h3>
+-            <p>Miniaturas com leitura rápida e alto impacto visual.</p>
+-          </div>
+-        </div>
+-      </section>
+-
+-      <section id="sobre" class="section">
+-        <div class="about">
+-          <div>
+-            <h2>Sobre meu trabalho</h2>
+-            <p>
+-              Trabalho com ilustrações digitais há mais de 6 anos, criando peças
+-              que equilibram sensibilidade artística e clareza visual. Meu foco é
+-              entregar projetos com acabamento profissional e narrativa visual
+-              alinhada ao objetivo do cliente.
+-            </p>
+-            <ul class="about-list">
+-              <li>Briefing detalhado e alinhamento criativo.</li>
+-              <li>Entrega rápida com revisões inteligentes.</li>
+-              <li>Arquivos prontos para mídias sociais e impressão.</li>
+-            </ul>
+-          </div>
+-          <div class="about-panel">
+-            <h3>Ferramentas & processos</h3>
+-            <p>
+-              Trabalho com uma combinação de ilustração digital, colagem e design
+-              gráfico para criar visuais únicos e versáteis.
+-            </p>
+-            <div class="about-tags">
+-              <span>Procreate</span>
+-              <span>Photoshop</span>
+-              <span>Illustrator</span>
+-              <span>Figma</span>
+-            </div>
+-          </div>
+-        </div>
+-      </section>
+-
+-      <section id="contato" class="section contact">
+-        <div class="contact-card">
+-          <div>
+-            <h2>Vamos criar algo incrível?</h2>
+-            <p>
+-              Envie seu briefing, prazo e referências. Responderei com uma proposta
+-              personalizada em até 24h.
+-            </p>
+-          </div>
+-          <form class="contact-form">
+-            <label>
+-              Nome
+-              <input type="text" placeholder="Seu nome" />
+-            </label>
+-            <label>
+-              Email
+-              <input type="email" placeholder="seuemail@email.com" />
+-            </label>
+-            <label>
+-              Projeto
+-              <textarea placeholder="Conte sobre seu projeto"></textarea>
+-            </label>
+-            <button type="submit">Enviar mensagem</button>
+-          </form>
+-        </div>
+-      </section>
+-    </main>
+-
+-    <footer class="footer">
+-      <p>© 2024 SeuNome. Portfólio de ilustração.</p>
+-      <div class="footer-links">
+-        <a href="mailto:contato@email.com">contato@email.com</a>
+-        <a href="https://instagram.com">Instagram</a>
+-        <a href="https://behance.net">Behance</a>
+-      </div>
+-    </footer>
+-  </body>
+-</html>
+-
++<!DOCTYPE html>
++<html lang="pt-BR">
++  <head>
++    <meta charset="UTF-8" />
++    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
++    <title>Feliz aniversário, meu amor 💚</title>
++    <meta
++      name="description"
++      content="Um site romântico e interativo de feliz aniversário, criado com muito amor."
++    />
++    <link rel="preconnect" href="https://fonts.googleapis.com" />
++    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
++    <link
++      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap"
++      rel="stylesheet"
++    />
++    <link rel="stylesheet" href="style.css" />
++  </head>
++  <body>
++    <div class="decor decor-top">💚</div>
++    <div class="decor decor-bottom">🍃</div>
++
++    <header class="hero reveal">
++      <p class="hero-tag">Para a pessoa mais especial da minha vida</p>
++      <h1>Feliz aniversário, meu amor 💚</h1>
++      <p class="hero-subtitle">
++        Hoje o mundo fica ainda mais bonito porque celebra o seu sorriso, sua luz e
++        o amor que eu tenho por você.
++      </p>
++      <button class="btn primary" id="openLetterBtn">Abrir surpresa 🎁</button>
++    </header>
++
++    <main>
++      <section class="letter-section reveal" id="carta">
++        <div class="letter-card hidden" id="letterCard">
++          <h2>Uma cartinha para você ✨</h2>
++          <p id="typingText" data-message="Meu amor, feliz aniversário! Que seu dia seja leve, lindo e cheio de carinho. Obrigado por existir e por transformar meus dias com sua presença. Que nunca te faltem sonhos, risadas e motivos para se sentir amada. Eu te amo mais a cada dia. 💚"></p>
++          <div class="letter-actions">
++            <button class="btn secondary" id="toggleMusicBtn">Tocar música 🎵</button>
++          </div>
++        </div>
++      </section>
++
++      <section class="countdown-section reveal" aria-label="Contagem para o próximo aniversário">
++        <h2>Contagem para o próximo aniversário 🎂</h2>
++        <div class="countdown-grid" id="countdown">
++          <article class="count-card"><span id="days">00</span><small>Dias</small></article>
++          <article class="count-card"><span id="hours">00</span><small>Horas</small></article>
++          <article class="count-card"><span id="minutes">00</span><small>Minutos</small></article>
++          <article class="count-card"><span id="seconds">00</span><small>Segundos</small></article>
++        </div>
++      </section>
++
++      <section class="game-section reveal">
++        <h2>Mini joguinho fofo 💚</h2>
++        <p>Clique nos corações para ganhar pontos e desbloquear uma surpresa!</p>
++        <div class="game-topbar">
++          <p>Pontos: <strong id="score">0</strong></p>
++          <button class="btn secondary" id="spawnHeartBtn">Começar jogo</button>
++        </div>
++        <div class="game-area" id="gameArea" aria-label="Área do jogo"></div>
++        <p class="unlock-message hidden" id="unlockMessage">
++          Você desbloqueou um beijo infinito 💋
++        </p>
++      </section>
++
++      <section class="gallery-section reveal">
++        <h2>Nossas memórias 📸</h2>
++        <div class="carousel" id="carousel">
++          <button class="carousel-btn" id="prevSlide" aria-label="Foto anterior">❮</button>
++          <div class="carousel-track" id="carouselTrack">
++            <figure class="slide active">
++              <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1200&q=80" alt="Casal sorrindo ao pôr do sol" />
++              <figcaption>Seu sorriso é meu lugar favorito.</figcaption>
++            </figure>
++            <figure class="slide">
++              <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?auto=format&fit=crop&w=1200&q=80" alt="Mãos dadas com flores" />
++              <figcaption>Todo caminho fica lindo ao seu lado.</figcaption>
++            </figure>
++            <figure class="slide">
++              <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1200&q=80" alt="Piquenique romântico com luz suave" />
++              <figcaption>Você é meu abraço em forma de paz.</figcaption>
++            </figure>
++          </div>
++          <button class="carousel-btn" id="nextSlide" aria-label="Próxima foto">❯</button>
++        </div>
++      </section>
++    </main>
++
++    <footer class="reveal">
++      <p>Feito com amor por <span id="authorName">Seu Nome</span> ✨</p>
++      <p class="footer-year">© <span id="currentYear"></span></p>
++    </footer>
++
++    <audio id="bgMusic" loop>
++      <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6cc5f0f17a.mp3?filename=romantic-love-11763.mp3" type="audio/mpeg" />
++    </audio>
++
++    <script src="script.js"></script>
++  </body>
++</html>
